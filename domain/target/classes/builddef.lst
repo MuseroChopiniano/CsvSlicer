@@ -1,0 +1,15 @@
+-outxml
+-source
+1.6
+-target
+1.6
+-classpath
+C:\Users\GastónAlejandro\.m2\repository\ch\qos\logback\logback-classic\1.1.2\logback-classic-1.1.2.jar;C:\Users\GastónAlejandro\.m2\repository\ch\qos\logback\logback-core\1.1.2\logback-core-1.1.2.jar;C:\Users\GastónAlejandro\.m2\repository\commons-logging\commons-logging\1.1.3\commons-logging-1.1.3.jar;C:\Users\GastónAlejandro\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\GastónAlejandro\.m2\repository\org\aspectj\aspectjrt\1.8.2\aspectjrt-1.8.2.jar;C:\Users\GastónAlejandro\.m2\repository\org\aspectj\aspectjtools\1.8.2\aspectjtools-1.8.2.jar;C:\Users\GastónAlejandro\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\GastónAlejandro\.m2\repository\org\slf4j\slf4j-api\1.7.7\slf4j-api-1.7.7.jar;C:\Users\GastónAlejandro\.m2\repository\org\springframework\spring-aop\4.3.4.RELEASE\spring-aop-4.3.4.RELEASE.jar;C:\Users\GastónAlejandro\.m2\repository\org\springframework\spring-beans\4.3.4.RELEASE\spring-beans-4.3.4.RELEASE.jar;C:\Users\GastónAlejandro\.m2\repository\org\springframework\spring-context\4.3.4.RELEASE\spring-context-4.3.4.RELEASE.jar;C:\Users\GastónAlejandro\.m2\repository\org\springframework\spring-core\4.1.1.RELEASE\spring-core-4.1.1.RELEASE.jar;C:\Users\GastónAlejandro\.m2\repository\org\springframework\spring-expression\4.3.4.RELEASE\spring-expression-4.3.4.RELEASE.jar;C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\target\classes
+-d
+C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\target\classes
+C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\src\main\java\Lector.java
+C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\src\main\java\Escritor.java
+C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\src\main\java\Columna.java
+C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\src\main\java\Fila.java
+C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\src\main\java\Celda.java
+C:\Users\GastónAlejandro\Documents\GitHub\CsvSlicer\domain\src\main\java\Archivo.java

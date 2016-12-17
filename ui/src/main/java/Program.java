@@ -1,4 +1,6 @@
 import java.io.FileNotFoundException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Created by GastónAlejandro on 17/12/2016.
@@ -7,13 +9,16 @@ public class Program {
 
 /**TODO: Hay que hacer todo lo de UI*/
 
-        static Archivo archivo;
+
 
     public static void main(String[] args) {
+        ApplicationContext context =
+                new ClassPathXmlApplicationContext("Beans.xml");
 
+        Archivo archivo ;
        /** Cambiar el path harcodeado para probar*/
 
-        Lector lector=new Lector();
+        Lector lector= (Lector) context.getBean("lector");
         try {
             archivo=lector.leerArchivo("C:\\Users\\GastónAlejandro\\Desktop\\archivo.csv");
             for (int i=0;i<archivo.getListaDeColumnas().size();i++)

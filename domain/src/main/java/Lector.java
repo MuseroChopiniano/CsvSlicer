@@ -9,7 +9,7 @@ import java.io.FileReader;
  */
 public class Lector {
 
-    private String caracterSeparador="\\t";
+    private String caracterSeparador;
 
     /** TODO: Falta pensar como inyectar el caracter separador, si por constructor, por metodo set o por parametro de leerArchivo*/
 
@@ -57,4 +57,12 @@ public class Lector {
                 }
         return  archivo;
      }
+
+    public void setCaracterSeparador(String caracterSeparador) {
+        this.caracterSeparador = caracterSeparador;
+    }
+
+    public String getCaracterSeparador() {
+        return caracterSeparador;
+    }
 }
