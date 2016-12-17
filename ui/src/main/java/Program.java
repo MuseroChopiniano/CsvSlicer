@@ -12,15 +12,14 @@ public class Program {
 
 
     public static void main(String[] args) {
-        ApplicationContext context =
-                new ClassPathXmlApplicationContext("Beans.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 
         Archivo archivo ;
        /** Cambiar el path harcodeado para probar*/
 
         Lector lector= (Lector) context.getBean("lector");
         try {
-            archivo=lector.leerArchivo("C:\\Users\\GastónAlejandro\\Desktop\\archivo.csv");
+            archivo=lector.leerArchivo("C:\\Users\\Facu\\Desktop\\Java\\PruebaConPath.csv");
             for (int i=0;i<archivo.getListaDeColumnas().size();i++)
             {
                 System.out.print(archivo.getListaDeColumnas().get(i).getNombre() + "    ");
