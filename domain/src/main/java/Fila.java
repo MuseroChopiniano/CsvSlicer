@@ -36,6 +36,5 @@ public class Fila {
         getListaDeCeldas().add(celda);
     }
 
-    /** TODO: qué parametro asginar al quitarCelda...id identificador de la posición de la celda o un objeto celda que mediante equals sacamos de la lista? */
-        public void quitarCelda(){}
+
 }

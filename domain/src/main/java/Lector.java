@@ -11,9 +11,7 @@ public class Lector {
 
     private String caracterSeparador;
 
-    /** TODO: Falta pensar como inyectar el caracter separador, si por constructor, por metodo set o por parametro de leerArchivo*/
-
-    public Archivo leerArchivo(String path) throws FileNotFoundException
+        public Archivo leerArchivo(String path) throws FileNotFoundException
     {
         Archivo archivo = new Archivo();
 

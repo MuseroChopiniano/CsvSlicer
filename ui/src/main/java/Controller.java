@@ -12,17 +12,28 @@ import java.util.List;
  * Created by GastónAlejandro on 17/12/2016.
  */
 public class Controller {
-    /**TODO: Definir toda la clase Controller*/
+
     private DefaultTableModel modelo;
     private Archivo archivo;
+    private  Lector lector;
+    private  Escritor escritor;
+
+    public Controller(){
+        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+        lector= (Lector) context.getBean("lector");
+        escritor=(Escritor) context.getBean("escritor");
+    }
 
     public DefaultTableModel leerArchivo() throws FileNotFoundException {
               modelo=new DefaultTableModel();
-        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-        Lector lector= (Lector) context.getBean("lector");
-        archivo = lector.leerArchivo(seleccionarArchivo());
+                      archivo = lector.leerArchivo(seleccionarArchivo());
         cargarTabla(archivo);
         return modelo;
+    }
+
+    public void cambiarCaracter(String caracter)
+    {
+        this.lector.setCaracterSeparador(caracter);
     }
 
     private void cargarTabla(Archivo archivo){
@@ -51,6 +62,28 @@ public class Controller {
             selectedFile = fileChooser.getSelectedFile();
         }
         return selectedFile.getPath();
+    }
+
+    public void removerColumna(String nombreColumna)
+    {
+        for (int i=0; i<archivo.getListaDeColumnas().size();i++)
+        {
+            if (archivo.getListaDeColumnas().get(i).getNombre()==nombreColumna)
+            {
+                archivo.getListaDeColumnas().remove(i);
+                removerCeldas(i);
+            }
+        }
+    }
+    private void removerCeldas(int indice)
+    {
+        for (int i=0;i<archivo.getListaDeFilas().size();i++)
+        {
+            archivo.getListaDeFilas().get(i).getListaDeCeldas().remove(indice);
+        }
+    }
+    public void crearArchivo(int numeroFilas){
+        escritor.crearNArchivos(archivo,numeroFilas,"C:\\Users\\GastónAlejandro\\Desktop\\1939_DC_1");
     }
 
 }

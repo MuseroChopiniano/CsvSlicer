@@ -53,9 +53,8 @@ public class Vista extends JFrame implements ActionListener{
         } else if(e.getSource()==removerColumnaButton){
             removerColumna();
         } else if(e.getSource()==cambiarCaracterSeparadorButton){
-                    ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-            Lector lector= (Lector) context.getBean("lector");
-            lector.setCaracterSeparador(JOptionPane.showInputDialog("Ingrese el nuevo caracter separador: "));
+                /** controlador.cambiarCaracter(JOptionPane.showInputDialog("Ingrese el nuevo caracter separador: "));*/
+                      controlador.crearArchivo(Integer.parseInt(cantidadDeFilasTextField.getText()));
         }
     }
 
@@ -63,6 +62,7 @@ public class Vista extends JFrame implements ActionListener{
         for(int i=0;i<table1.getColumnCount();i++){
             if(table1.getColumnName(i)==list1.getSelectedValue().toString()){
                 TableColumn column=table1.getColumnModel().getColumn(i);
+                controlador.removerColumna(table1.getColumnName(i)); /**Remueve la columna del archivo del controlador*/
                 table1.removeColumn(column);
                 cargarLista();
             }
