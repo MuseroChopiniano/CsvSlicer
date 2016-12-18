@@ -17,9 +17,8 @@ public class Controller {
     private Archivo archivo;
 
     public DefaultTableModel leerArchivo() throws FileNotFoundException {
-        ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-        modelo=new DefaultTableModel();
-        Lector lector= (Lector) context.getBean("lector");
+              modelo=new DefaultTableModel();
+        Lector lector= new Lector();
         archivo = lector.leerArchivo(seleccionarArchivo());
         cargarTabla(archivo);
         return modelo;
@@ -52,4 +51,5 @@ public class Controller {
         }
         return selectedFile.getPath();
     }
+
 }

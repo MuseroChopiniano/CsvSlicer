@@ -22,12 +22,16 @@ public class Vista extends JFrame implements ActionListener{
     private JButton removerColumnaButton;
     private JList list1;
     private JTextField cantidadDeFilasTextField;
-private Controller controlador = new Controller();
+    private JButton cambiarCaracterSeparadorButton;
+    private Controller controlador = new Controller();
+
 
     public Vista() {
         button1.addActionListener(this);
         removerColumnaButton.addActionListener(this);
+        cambiarCaracterSeparadorButton.addActionListener(this);
         getContentPane().add(panel1, BorderLayout.CENTER);
+
     }
 
     public static void main(String[] args) {
@@ -38,7 +42,7 @@ private Controller controlador = new Controller();
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==button1){
+                if (e.getSource()==button1){
             try {
                table1.setModel(controlador.leerArchivo());
                 cargarLista();
@@ -48,6 +52,10 @@ private Controller controlador = new Controller();
             }
         } else if(e.getSource()==removerColumnaButton){
             removerColumna();
+        } else if(e.getSource()==cambiarCaracterSeparadorButton){
+                    ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+            Lector lector= (Lector) context.getBean("lector");
+            lector.setCaracterSeparador(JOptionPane.showInputDialog("Ingrese el nuevo caracter separador: "));
         }
     }
 
