@@ -46,7 +46,9 @@ public class Vista extends JFrame implements ActionListener{
         }
         Vista vista= new Vista();
         vista.setTitle("CsvSlicer");
-                vista.pack();
+        Image icon=new ImageIcon("CsvSlicerIcon.png").getImage();
+        vista.setIconImage(icon);
+        vista.pack();
         vista.setVisible(true);
     }
 
@@ -57,7 +59,7 @@ public class Vista extends JFrame implements ActionListener{
                 table1.setModel(controlador.leerArchivo(seleccionarArchivo()));
                 cargarLista();
                 cantidadDeFilasLabel.setText("Cantidad de filas: " + table1.getRowCount());
-                caracterSeparadorLabel.setText("Caracter separador lectura: " + controlador.getCaracter());
+                caracterSeparadorLabel.setText("Caracter separador: " + controlador.getCaracter());
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
             }
