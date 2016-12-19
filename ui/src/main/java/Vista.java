@@ -46,6 +46,7 @@ public class Vista extends JFrame implements ActionListener{
         }
         Vista vista= new Vista();
         vista.setTitle("CsvSlicer");
+        vista.setDefaultCloseOperation(vista.EXIT_ON_CLOSE);
         Image icon=new ImageIcon("CsvSlicerIcon.png").getImage();
         vista.setIconImage(icon);
         vista.pack();
