@@ -17,6 +17,11 @@ public class Controller {
     private Archivo archivo;
     private  Lector lector;
     private  Escritor escritor;
+    private Archivo archivoOriginal;
+
+    public Archivo getArchivo() {
+        return archivo;
+    }
 
     public Controller(){
         ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
@@ -24,19 +29,21 @@ public class Controller {
         escritor=(Escritor) context.getBean("escritor");
     }
 
-    public DefaultTableModel leerArchivo() throws FileNotFoundException {
-              modelo=new DefaultTableModel();
-                      archivo = lector.leerArchivo(seleccionarArchivo());
+    public DefaultTableModel leerArchivo(String path) throws FileNotFoundException {
+        archivo = lector.leerArchivo(path);
+        archivoOriginal=lector.leerArchivo(path);
         cargarTabla(archivo);
         return modelo;
     }
 
-    public void cambiarCaracter(String caracter)
-    {
+    public void cambiarCaracter(String caracter) throws FileNotFoundException {
         this.lector.setCaracterSeparador(caracter);
+        this.escritor.setCaracterSeparador(caracter);
+        this.archivo=lector.leerArchivo(this.archivo.getPath());
     }
 
     private void cargarTabla(Archivo archivo){
+        modelo=new DefaultTableModel();
         for (int i = 0; i < archivo.getListaDeColumnas().size(); i++) {
             modelo.addColumn(archivo.getListaDeColumnas().get(i).getNombre());
         }
@@ -53,18 +60,7 @@ public class Controller {
         }
     }
 
-    private String seleccionarArchivo(){
-        File selectedFile=null;
-        JFileChooser fileChooser=new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        int result = fileChooser.showOpenDialog(new JPanel());
-        if (result==JFileChooser.APPROVE_OPTION) {
-            selectedFile = fileChooser.getSelectedFile();
-        }
-        return selectedFile.getPath();
-    }
-
-    public void removerColumna(String nombreColumna)
+    public DefaultTableModel removerColumna(String nombreColumna)
     {
         for (int i=0; i<archivo.getListaDeColumnas().size();i++)
         {
@@ -74,6 +70,8 @@ public class Controller {
                 removerCeldas(i);
             }
         }
+        cargarTabla(archivo);
+        return modelo;
     }
     private void removerCeldas(int indice)
     {
@@ -82,8 +80,43 @@ public class Controller {
             archivo.getListaDeFilas().get(i).getListaDeCeldas().remove(indice);
         }
     }
-    public void crearArchivo(int numeroFilas){
-        escritor.crearNArchivos(archivo,numeroFilas,"C:\\Users\\GastónAlejandro\\Desktop\\1939_DC_1");
+    public void crearNArchivos(int numeroFilas, String path){
+        escritor.crearNArchivos(archivo,numeroFilas,path);
     }
 
+    public void crearArchivo(String path){
+        archivo.setPath(path + "\\" +archivo.getNombre() + "Slice.csv");
+        escritor.crearArchivo(archivo, archivo.getPath());
+    }
+
+    public String getCaracter(){
+        return lector.getCaracterSeparador();
+    }
+
+    public DefaultTableModel filtrarFilas(String[] valores){
+        boolean coincidencia=false;
+        for(int i=0;i<archivo.getListaDeFilas().size();){
+            Fila fila=archivo.getListaDeFilas().get(i);
+            coincidencia=false;
+
+            for(int j=0;j<valores.length;j++){
+               String valor= valores[j];
+                if(fila.getListaDeCeldas().get(0).getValor().equals(valor)){
+                   coincidencia=true;
+                }
+            }
+
+            if(!coincidencia){
+                archivo.getListaDeFilas().remove(i);
+            } else{i++;}
+        }
+        cargarTabla(archivo);
+        return modelo;
+    }
+
+    public DefaultTableModel verOriginal() throws FileNotFoundException {
+        cargarTabla(archivoOriginal);
+        archivo=lector.leerArchivo(archivoOriginal.getPath());
+        return modelo;
+    }
 }

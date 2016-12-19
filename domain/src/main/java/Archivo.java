@@ -5,7 +5,7 @@ import java.util.List;
  * Created by GastónAlejandro on 16/12/2016.
  * Created by Facu on 16/12/2016.
  */
-public class Archivo {
+public class Archivo implements Cloneable {
 
     private Integer id;
 
@@ -70,4 +70,25 @@ public class Archivo {
     }
     public void agregarColumna(Columna columna){ getListaDeColumnas().add(columna);}
 
+    public Archivo clone(){
+        Archivo copiaArchivo;
+        try {
+            copiaArchivo=(Archivo) super.clone();
+            copiaArchivo.setListaDeColumnas(new ArrayList<Columna>(this.getListaDeColumnas()));
+            copiaArchivo.setListaDeFilas(new ArrayList<Fila>(this.getListaDeFilas()));
+            for(int i=0;i<this.getListaDeFilas().size();i++){
+                Fila fila=this.getListaDeFilas().get(i);
+                Fila copiaFila = copiaArchivo.getListaDeFilas().get(i);
+                copiaFila.setListaDeCeldas(new ArrayList<Celda>(fila.getListaDeCeldas()));
+                for(int j=0;j<fila.getListaDeCeldas().size();j++){
+                    Celda celda=fila.getListaDeCeldas().get(j);
+                   Celda copiaCelda=copiaFila.getListaDeCeldas().get(j);
+                    copiaCelda.setValor(celda.getValor());
+                }
+            }
+            return (Archivo) copiaArchivo;
+        } catch (CloneNotSupportedException e) {
+            throw new InternalError();
+        }
+    }
 }

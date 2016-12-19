@@ -48,13 +48,16 @@ public class Lector {
                         }
                         idFila+=1;
                     }
+                    archivo.setPath(path);
+                    String nombre = archivoPorLeer.getName().substring(0,archivoPorLeer.getName().length()-4);
+                    archivo.setNombre(nombre);
                 }
                 catch (Exception ex)
                 {
 
                 }
-        return  archivo;
-     }
+                return  archivo;
+    }
 
     public void setCaracterSeparador(String caracterSeparador) {
         this.caracterSeparador = caracterSeparador;

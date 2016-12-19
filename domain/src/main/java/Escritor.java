@@ -77,7 +77,7 @@ public void crearNArchivos(Archivo archivo,int numeroFilas,String path)
         archivoNuevo.setListaDeColumnas(archivo.getListaDeColumnas());
         archivoNuevo.setListaDeFilas(archivo.getListaDeFilas().subList(desde,hasta));
         lista.add(archivoNuevo);
-        archivoNuevo.setPath(path + "\\ArchivoCsvSlicer" + lista.size() +".csv");
+        archivoNuevo.setPath(path + "\\" +archivo.getNombre() + "Slice" + lista.size() +".csv");
         desde+=numeroFilas;
         cantidadFilas=cantidadFilas-numeroFilas;
     }
