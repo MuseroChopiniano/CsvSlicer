@@ -54,7 +54,7 @@ public void crearArchivo(Archivo archivo,String path)
         }
         bufferedWriter.close();
     } catch (IOException e) {
-        e.printStackTrace();     /**TODO: MANEJO DE EXCEPCIONES!! ESTO LE DEBE SALTAR AL CLIENTE COMO UN MENSAJE DE ERROR NO COMO STACKTRACE*/
+        e.printStackTrace();
     }
 
 }

@@ -45,7 +45,8 @@ public class Vista extends JFrame implements ActionListener{
             e.printStackTrace();
         }
         Vista vista= new Vista();
-        vista.pack();
+        vista.setTitle("CsvSlicer");
+                vista.pack();
         vista.setVisible(true);
     }
 
@@ -61,7 +62,11 @@ public class Vista extends JFrame implements ActionListener{
                 e1.printStackTrace();
             }
         } else if(e.getSource()==removerColumnaButton){
-            table1.setModel(controlador.removerColumna(list1.getSelectedValue().toString()));
+          try {  table1.setModel(controlador.removerColumna(list1.getSelectedValue().toString()));}
+          catch (NullPointerException ex)
+          {
+            JOptionPane.showMessageDialog(null,"Por favor seleccione una Columna de la lista");
+          }
             cargarLista();
         } else if(e.getSource()==cambiarCaracterSeparadorButton){
             try {
@@ -74,10 +79,21 @@ public class Vista extends JFrame implements ActionListener{
             }
         } else if(e.getSource()==crearNArchivosButton){
             String cantFilas=JOptionPane.showInputDialog("Ingrese la cantidad de filas por archivo: ");
-            controlador.crearNArchivos(Integer.parseInt(cantFilas), seleccionarDirectorio());
+            try{
+            controlador.crearNArchivos(Integer.parseInt(cantFilas), seleccionarDirectorio());}
+            catch (NumberFormatException ex)
+            {
+                JOptionPane.showMessageDialog(null,"Por favor introduzca un valor válido");
+            }
         } else if(e.getSource()==filtrarFilasButton){
-            String[] valores = textField1.getText().split(controlador.getCaracter());
-            table1.setModel(controlador.filtrarFilas(valores));
+         if (textField1.getText().length()>0) {
+             String[] valores = textField1.getText().split(controlador.getCaracter());
+
+           try{
+            table1.setModel(controlador.filtrarFilas(valores));}
+            catch (NullPointerException ex){JOptionPane.showMessageDialog(null,"Asegúrese de tener un archivo cargado");}
+         }
+         else JOptionPane.showMessageDialog(null,"Por favor introduzca un valor válido");
         } else if(e.getSource()==verArchivoOriginalButton){
             try {
                 table1.setModel(controlador.verOriginal());
@@ -87,7 +103,8 @@ public class Vista extends JFrame implements ActionListener{
             }
 
         } else if(e.getSource()==guardarArchivoButton){
-            controlador.crearArchivo(seleccionarDirectorio());
+        try {            controlador.crearArchivo(seleccionarDirectorio());}
+            catch (Exception ex){}
         }
     }
 

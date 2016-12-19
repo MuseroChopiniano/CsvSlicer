@@ -39,7 +39,8 @@ public class Controller {
     public void cambiarCaracter(String caracter) throws FileNotFoundException {
         this.lector.setCaracterSeparador(caracter);
         this.escritor.setCaracterSeparador(caracter);
-        this.archivo=lector.leerArchivo(this.archivo.getPath());
+        if (this.archivo!=null){
+        this.archivo=lector.leerArchivo(this.archivo.getPath());}
     }
 
     private void cargarTabla(Archivo archivo){
