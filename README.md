@@ -1,1 +1,1 @@
-# CsvSlicer by Facutronic and MuseroChopiniano
+# CsvSlicer by FacuTripelhorn and MuseroChopiniano
